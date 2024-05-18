@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>123</div>
+    <script>
+        function add(num1,num2){//盡量不要超過3個參數
+            //console.log(number1 + number2)
+            return(parseFloat(num1) + parseFloat(num2))//傳回值給區域之外
+            console.log('有嗎') //答案是不會出現因為在return之後
+        }
+        const res = add(2,3)
+        console.log (res)
+
+        
+        const add2 = (x , y) => x+y;
+        console.log(add2(4,5))
+
+        const intro =(name,type)=> `我是${name}，血型是${type}`
+        console.log(intro('Elaine','B'));
+    </script>
+</body>
+</html>

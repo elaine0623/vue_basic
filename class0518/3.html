@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="minus">-</button>
+        {{res}}
+        <button @click="add">+</button>
+        <br>
+        <!-- {{total}} 錯誤寫法-->
+        <p>總價{{ parse() }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+        // console.log(Vue);
+        Vue.createApp({
+            data() {
+                return {
+                    res: 0,
+                    count : 10, //每次的值
+                    price: 100
+                }
+            },
+            methods: {
+                add(){
+                    // this.res = this.res + 1 //取代innertext
+                    if(this.res >= 100) return
+                    this.res = this.res + this.count 
+                    // console.log('test');
+                },
+                minus(){
+                    // if (this.res!=0){
+                    //     this.res -= this.count;//this 是指事件發生時
+                    // }
+                    if(this.res == 0)return //res=0的時候就return
+                    this.res -= this.count;
+                },
+                parse(){
+                    // total = this.price * this.res 錯誤寫法
+                    return this.price * this.res //把值回傳給函數之外                 
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+</html>
