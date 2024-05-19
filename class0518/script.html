@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+
+<body>
+    <!-- Example  006_事件處理methods -->
+    <div id="app">
+        興趣數量：{{ interestCount }}
+        <input type="text" v-model="inputText"></input>
+        <button @click="addItem">新增興趣</button>
+
+        <div v-if="interestCount == 0">
+            人生是不是有點無聊兒
+        </div>
+        <div v-else>
+            <ul>
+                <ol v-for="(item, index) in interest" :key="index">
+                    {{ item }}
+                    <button @click="reduceItem(index)">Ｘ</button>
+                </ol>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+        //console.log(Vue)
+        //debugger
+        const app = Vue.createApp({
+            data() {//callback fuction
+                return {
+                    interest: [],
+                    inputText: ''
+                }
+            },
+            computed: {
+                interestCount() {
+                    return this.interest.lengh
+                }
+            },
+            methods: {
+                addItem() {
+                    if (this.inputText === '') return
+                    this.interest.push(this.inputText)
+                    this.inputText = ''
+                },
+                reduceItem(index) {
+                    this.interest.splice(index, 1)
+                },
+                reset() {
+                    //清除interest
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+
+    <!-- 007_事件觸發v-on -->
+    <div id="example">
+        <button v-on:click="food += 1">打獵</button>
+        <button @click="food += 1">採水果</button>
+        <button @click="callPeople">招集平民</button>
+        <p>民眾： {{ people }}人</p>
+        <p>食物： {{ food }}</p>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    people: 2,
+                    food: 300
+                }
+            },
+            methods: {
+                callPeople() {
+                    this.food = this.food - 3
+                    this.people = this.people + 1
+                }
+            }
+        }).mount('#example')
+    </script>
+</body>
+
+</html>

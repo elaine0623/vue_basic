@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>Hello {{name}} ,要去聽{{music[1]}}</p>
+        <p>{{age}}</p>
+        <p>{{live? "活著": "死掉了"}}</p>
+        <p>{{music}}</p>
+        <p>{{skill}}</p>
+        <h6 v-text="age"></h6>
+        <h6 v-text="`${age}歲`"></h6>
+        <h6 v-text="skill['f2e']"></h6>
+        <h6 v-text="skill['f2e'][1]"></h6>
+        <h6 v-html="skill['f2e']"></h6>
+        <h6 v-html="skill['f2e'][1]"></h6>
+        <h6 v-html="content"></h6>   <!-- 資安漏洞 Injection Attack-->
+
+        <h6 v-text="number"></h6>
+        <h6 v-html="number"></h6>
+        
+        <p v-html="note"></p><br>
+        <p v-text="note"><i></i></p>
+        <p><i>{{note}}</i></p>
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+        //console.log(Vue)
+        //debugger
+        const app = Vue.createApp({
+            data() {//callback fuction
+                return {
+                    name: 'Elaine',//定義狀態
+                    age: 18,
+                    live: true,
+                    music: ['pop', 'coldplay'],
+                    skill: {
+                        f2e: ['vue', 'react'],
+                        b2e: ['php', 'nodejs']
+                    },
+                    gender:null,
+                    content:`<div style="color:red;">嘿嘿</div>`,
+                    note: '<a href="#">來點這個連結</a>',
+                    number:0
+                }
+            },
+        })
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

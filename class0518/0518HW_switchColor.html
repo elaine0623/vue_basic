@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            background-color: #eee;
+            width: 2rem;
+            height: 2rem;
+        }
+        .red{
+            background-color: lightpink;
+        }
+        .orange{
+            background-color: lightcoral;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .green{
+            background-color: lightgreen;
+        }
+        .blue{
+            background-color: lightblue;
+        }
+        .deepblue{
+            background-color: dodgerblue;
+        }
+        .purple{
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+    <button @click="changeColor">換色</button>
+    <p>{{tab}}</p>
+    <div class="box" :class="tab"></div>
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+        // console.log(Vue);
+        Vue.createApp({
+            data() {
+                return{
+                    color:['red','orange','yellow','green','blue','deepblue','purple'],
+                    colorCount:0,
+                    tab:'',
+                }
+            },
+            methods: {
+                changeColor(){
+                    if (this.colorCount===this.color.length){
+                        this.colorCount=0
+                    }
+                    this.tab = this.color[this.colorCount]
+                    this.colorCount += 1
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+</html>
